@@ -25,7 +25,7 @@ fun Application.configureDatabase() {
             jdbcUrl = config.property("url").getString()
             username = config.property("username").getString()
             password = config.property("password").getString()
-            maximumPoolSize = 100
+            maximumPoolSize = 50
             isAutoCommit = false
             transactionIsolation = "TRANSACTION_READ_COMMITTED"
             validate()

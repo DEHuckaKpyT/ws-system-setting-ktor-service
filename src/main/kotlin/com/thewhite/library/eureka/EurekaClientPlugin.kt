@@ -67,6 +67,10 @@ class CustomInstanceConfig(private val pluginConfig: EurekaConfig) : PropertiesI
     override fun getNonSecurePort(): Int {
         return pluginConfig.client.nonSecurePort
     }
+
+    override fun getVirtualHostName(): String {
+        return pluginConfig.client.applicationName
+    }
 }
 
 class CustomEurekaClientConfig(private val pluginConfig: EurekaConfig) : DefaultEurekaClientConfig() {

@@ -1,0 +1,12 @@
+{
+  "system_setting": [
+    {
+      "key": "k1",
+      "value": "v1"
+    },
+    {
+      "key": "k2",
+      "value": null
+    }
+  ]
+}

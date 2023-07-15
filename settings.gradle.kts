@@ -1,0 +1,1 @@
+rootProject.name = "com.thewhite.ws-system-setting-ktor-service"

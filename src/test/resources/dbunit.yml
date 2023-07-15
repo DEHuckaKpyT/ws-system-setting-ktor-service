@@ -1,0 +1,4 @@
+caseInsensitiveStrategy: LOWERCASE
+properties:
+  schema: public
+  caseSensitiveTableNames: false

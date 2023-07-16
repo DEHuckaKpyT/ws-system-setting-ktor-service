@@ -11,7 +11,6 @@ val postgresql_version: String by project
 val eureka_version: String by project
 val openapigenerator_version: String by project
 val testcontainers_version: String by project
-val kmapper_version: String by project
 
 plugins {
     application

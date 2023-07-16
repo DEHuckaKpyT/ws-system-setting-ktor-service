@@ -1,9 +1,9 @@
 package com.thewhite.routes
 
-import com.dehucka.library.IntegrationTest
-import com.dehucka.library.client
-import com.dehucka.library.dataSet
-import com.dehucka.library.expectedDataSet
+import com.thewhite.library.IntegrationTest
+import com.thewhite.library.client
+import com.thewhite.library.dataSet
+import com.thewhite.library.expectedDataSet
 import com.thewhite.routes.dto.BatchPutSystemSettingDto
 import com.thewhite.routes.dto.PutSystemSettingDto
 import com.thewhite.routes.dto.ValueDto

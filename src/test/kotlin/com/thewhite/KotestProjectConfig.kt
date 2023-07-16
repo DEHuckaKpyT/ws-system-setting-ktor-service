@@ -1,7 +1,7 @@
 package com.thewhite
 
-import com.dehucka.library.IntegrationTestConfiguration
 import com.dehucka.library.UnitTestConfiguration
+import com.thewhite.library.IntegrationTestConfiguration
 import io.kotest.core.config.AbstractProjectConfig
 import io.kotest.core.extensions.Extension
 

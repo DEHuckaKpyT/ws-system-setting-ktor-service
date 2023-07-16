@@ -1,12 +1,5 @@
-package com.dehucka.library
+package com.thewhite.library
 
-import com.fasterxml.jackson.core.util.DefaultIndenter
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.KotlinFeature
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -24,7 +17,6 @@ import net.javacrumbs.jsonunit.core.Configuration
 import net.javacrumbs.jsonunit.core.internal.Diff
 import net.javacrumbs.jsonunit.core.internal.Path
 import org.testcontainers.containers.JdbcDatabaseContainer
-import java.text.SimpleDateFormat
 
 
 /**
@@ -33,38 +25,10 @@ import java.text.SimpleDateFormat
  *
  * @author Denis Matytsin
  */
-val mapper = ObjectMapper().apply {
-    configure(SerializationFeature.INDENT_OUTPUT, true)
-    setDefaultPrettyPrinter(DefaultPrettyPrinter().apply {
-        indentArraysWith(DefaultPrettyPrinter.FixedSpaceIndenter.instance)
-        indentObjectsWith(DefaultIndenter("  ", "\n"))
-    })
-    dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-
-    registerModule(JavaTimeModule())  // support java.time.* types
-
-    registerModule(
-        KotlinModule.Builder()
-            .withReflectionCacheSize(512)
-            .configure(KotlinFeature.NullToEmptyCollection, false)
-            .configure(KotlinFeature.NullToEmptyMap, false)
-            .configure(KotlinFeature.NullIsSameAsDefault, false)
-            .configure(KotlinFeature.SingletonSupport, false)
-            .configure(KotlinFeature.StrictNullChecks, false)
-            .build()
-    )
-
-//    registerModule(
-//        SimpleModule()
-//            .addSerializer(LocalDateTime::class.java, KLocalDateTimeSerializer())
-//            .addDeserializer(LocalDateTime::class.java, KLocalDateTimeDeserializer())
-//    )
-}
-
 fun DslDrivenSpec.client(): HttpClient {
     return testApplication.createClient {
         install(ContentNegotiation) {
-            jackson(contentType = ContentType.Application.Json) { mapper }
+            jackson(contentType = ContentType.Application.Json) { mapperConfig() }
         }
         defaultRequest {
             contentType(ContentType.Application.Json)

@@ -50,6 +50,7 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-cors-jvm:$ktor_version")
     implementation("io.ktor:ktor-client-apache-jvm:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
     //endregion ktor
 
     //region koin
@@ -101,7 +102,6 @@ dependencies {
 
     //region other
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
-    testImplementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
     testImplementation("com.github.database-rider:rider-core:1.38.1")
     testImplementation("org.testcontainers:testcontainers:$testcontainers_version")
     testImplementation("org.testcontainers:postgresql:$testcontainers_version")

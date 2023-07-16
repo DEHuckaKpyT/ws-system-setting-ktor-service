@@ -1,4 +1,4 @@
-package com.dehucka.library
+package com.thewhite.library
 
 import com.github.database.rider.core.configuration.DataSetConfig
 import com.github.database.rider.core.connection.ConnectionHolderImpl

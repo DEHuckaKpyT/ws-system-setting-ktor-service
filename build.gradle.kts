@@ -77,9 +77,6 @@ dependencies {
 
     //region logs
     implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("org.slf4j:slf4j-log4j12:2.0.6")
-    implementation("org.apache.logging.log4j:log4j-core:2.20.0")
-    implementation("org.apache.logging.log4j:log4j-api-kotlin:1.2.0")
     //endregion logs
 
     //region other

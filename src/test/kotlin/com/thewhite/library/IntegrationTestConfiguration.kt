@@ -3,6 +3,7 @@ package com.thewhite.library
 import com.github.database.rider.core.configuration.DataSetConfig
 import com.github.database.rider.core.connection.ConnectionHolderImpl
 import com.github.database.rider.core.dataset.DataSetExecutorImpl
+import com.thewhite.library.logging.Logging
 import com.zaxxer.hikari.HikariDataSource
 import io.kotest.core.listeners.AfterEachListener
 import io.kotest.core.listeners.AfterProjectListener
@@ -14,7 +15,6 @@ import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import io.kotest.extensions.system.withSystemProperties
 import io.ktor.server.testing.*
-import org.apache.logging.log4j.kotlin.Logging
 import org.testcontainers.containers.PostgreSQLContainer
 
 
@@ -24,7 +24,6 @@ import org.testcontainers.containers.PostgreSQLContainer
  *
  * @author Denis Matytsin
  */
-
 val IntegrationTest by lazy { IntegrationTestExtension() }
 
 class IntegrationTestConfiguration : AfterProjectListener, Logging {
@@ -32,15 +31,15 @@ class IntegrationTestConfiguration : AfterProjectListener, Logging {
     override suspend fun afterProject() {
         if (!started) return
 
-        logger.info("Stopping TestApplication.")
+        log.info("Stopping TestApplication.")
         testApplication.stop()
-        logger.info("TestApplication stopped.")
+        log.info("TestApplication stopped.")
 
         dataSource.close()
 
-        logger.info("Stopping TestContainer.")
+        log.info("Stopping TestContainer.")
         postgresContainer.stop()
-        logger.info("TestContainer stopped.")
+        log.info("TestContainer stopped.")
     }
 }
 
@@ -50,9 +49,9 @@ class IntegrationTestExtension : BeforeSpecListener, BeforeEachListener, AfterEa
         if (started) return
         started = true
 
-        logger.info("Starting TestContainer.")
+        log.info("Starting TestContainer.")
         postgresContainer.start()
-        logger.info("TestContainer started.")
+        log.info("TestContainer started.")
 
         dataSetExecutor = DataSetExecutorImpl.instance(ConnectionHolderImpl(dataSource.connection))
 
@@ -63,9 +62,9 @@ class IntegrationTestExtension : BeforeSpecListener, BeforeEachListener, AfterEa
                 "DATA_SOURCE_PASSWORD" to "test"
             )
         ) {
-            logger.info("Starting TestApplication.")
+            log.info("Starting TestApplication.")
             testApplication.start()
-            logger.info("TestApplication started.")
+            log.info("TestApplication started.")
         }
     }
 
